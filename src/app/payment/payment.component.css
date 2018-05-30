@@ -1,0 +1,43 @@
+.container {
+  padding: 20px 40px;
+  width: 50%
+}
+
+.bar {
+  width: 75%;
+  margin-left: 0px;
+  border-width: 2px;
+}
+
+.title-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2em;
+  padding: 8px;
+  font-family: Georgia, serif;
+}
+
+.account-container {
+  margin-top: 30px;
+}
+
+.account-container h2 {
+  font-size: 1.2em;
+  font-family: Georgia, serif;
+}
+
+.account-container input {
+  width: 250px;
+  border-radius: 0px;
+  margin-bottom: 5px;
+}
+
+.btn {
+  border-radius: 0px;
+  padding: 10px 30px;
+}

@@ -1,0 +1,28 @@
+body {
+  background-color: #fafafa;
+}
+
+.title {
+  margin: 20px auto 40px auto;
+}
+
+.sign-in {
+  background-color: white;
+  border: 1px solid #eee;
+  padding: 30px;
+  width: 400px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.sign-in h5 {
+  font-family: Poynter, Georgia, serif;
+  margin-bottom: 20px;
+}
+.continue-button {
+  margin-top: 20px;
+}
+
+.policy {
+  font-size: 10px;
+}
