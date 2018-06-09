@@ -9,9 +9,8 @@
     <div class="col-md-6">
       <div class="setting">
         <h2>Account Settings</h2>
-        <p><strong>Full Name:</strong> Eddy Mogollon</p>
-        <p><strong>Email Address:</strong> eddymogs@gmail.com</p>
-        <p><strong>Password:</strong> ********</p>
+        <p><strong>Full Name:</strong> {{ fullName }}</p>
+        <p><strong>Email Address:</strong> {{ email }}</p>
         <p><a href="#">Manage Email Preferences</a></p>
 
         <button class="btn btn-info btn-setting" routerLink="/account">Manage Account Settings</button>
@@ -22,7 +21,7 @@
         <p><strong>Physical Address:</strong> 123 Main Street</p>
         <p><strong>Shipping Address:</strong> 456 Liberty Street</p>
 
-        <button class="btn btn-info btn-setting" routerLink="/address">Manage Addresses</button>
+        <button class="btn btn-info btn-setting" (click)="updateUserInfo()">Manage Addresses</button>
       </div>
     </div>
 

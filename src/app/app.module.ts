@@ -9,12 +9,16 @@ import { ProfileComponent } from './profile/profile.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AddressComponent } from './address/address.component';
 import { BooksComponent } from './books/books.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
+
+import { AuthService } from './auth/auth.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @NgModule({
   declarations: [
@@ -28,13 +32,18 @@ import { DropDownComponent } from './drop-down/drop-down.component';
     PaymentComponent,
     AddressComponent,
     BooksComponent,
-    DropDownComponent
+    DropDownComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [AuthService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

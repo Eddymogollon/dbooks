@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="text-center title" >Dbooks</h1>
+
+  <form (ngSubmit)="onSignin(f)" #f="ngForm">
+    <div class="sign-in">
+      <h5>Sign In</h5>
+      <label>Email</label>
+      <input class="form-control" type="text" name="email" ngModel>
+
+      <label>Password</label>
+      <input class="form-control" type="password" name="password" ngModel>
+
+      <button class="continue-button btn btn-primary btn-block" type="submit">Continue</button>
+      <hr />
+      <p class="text-center">Don't have an account? <a routerLink="/sign_up">Create an Account!</a></p>
+
+      <p class="text-center policy">By signing in you are agreeing to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </form>
+ </div>

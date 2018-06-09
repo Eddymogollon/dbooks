@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AccountComponent } from './account/account.component';
 import { AddressComponent } from './address/address.component';
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'book_details', component: BookdetailsComponent },
   { path: 'sign_in', component: SigninComponent },
+  { path: 'sign_up', component: SignupComponent },
   { path: 'account', component: AccountComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'address', component: AddressComponent },
