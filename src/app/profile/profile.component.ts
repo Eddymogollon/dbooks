@@ -25,8 +25,6 @@ export class ProfileComponent implements OnInit {
   getUserInfo() {
     console.log('edd');
 
-
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('hello');

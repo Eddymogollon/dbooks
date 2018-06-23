@@ -29,6 +29,7 @@ export class AuthService {
                   name: fullName
                 }
               });
+              this.router.navigate(['/profile']);
             }
             return;
           }
@@ -38,10 +39,6 @@ export class AuthService {
       .catch(
         error => console.log(error)
       );
-
-
-
-
   }
 
   signinUser(email: string, password: string) {
@@ -51,7 +48,11 @@ export class AuthService {
           this.router.navigate(['/']);
           firebase.auth().currentUser.getIdToken()
             .then(
-              (token: string) => this.token = token
+              (token: string) => {
+                this.token = token;
+                console.log('User logged in');
+                this.router.navigate(['/profile']);
+              }
             );
         }
       )

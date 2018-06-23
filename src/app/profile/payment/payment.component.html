@@ -1,0 +1,88 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/profile">Profile</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Payment</li>
+    </ol>
+  </nav>
+
+  <div class="title-container">
+    <h1 class="title">Manage Payments</h1>
+  </div>
+
+  <hr />
+
+  <button (click)="onTestButton()" class="btn btn-info testerClass">Toggle payment</button>
+  <br />
+  <div *ngIf="!mockData.hasPayment; else elseBlock">
+    <p>You do not have any payment methods stored. Please click on the "Add New Payment Method" button to add a new payment
+      method.
+    </p>
+  </div>
+  <ng-template #elseBlock>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Default</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ mockData.defaultPayment.cardName }}</h6>
+            <p class="card-text card-address">Expires: {{mockData.defaultPayment.expDate.month}}/{{mockData.defaultPayment.expDate.year}}</p>
+            <p class="card-text card-address">Credit card: {{ mockData.defaultPayment.cardNumber }}</p>
+            <a href="#" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let creditCard of mockData.payments" class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Secondary</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ creditCard.cardName }}</h6>
+            <p class="card-text card-address">Expires: {{creditCard.expDate.month}}/{{creditCard.expDate.year}}</p>
+            <p class="card-text card-address">Credit card: {{ creditCard.cardNumber }}</p>
+            <a href="#" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+  <br />
+  <button routerLink="new-payment" class="btn btn-info">Add New Payment Method</button>
+
+
+
+
+  <!-- <form>
+    <div class="form-row">
+      <div class="col-3">
+        <label>Name on card</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+      <div class="col-3">
+        <label>Card number</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+      <div class="col-3">
+        <label>Exp date (MM/YYYY)</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+      <div class="col-3">
+        <label>Security Code</label>
+        <input type="text" class="form-control" placeholder="">
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-warning">Add your card</button>
+  </form> -->
+
+</div>

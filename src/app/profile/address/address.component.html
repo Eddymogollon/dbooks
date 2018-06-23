@@ -1,0 +1,65 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/profile">Profile</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Address</li>
+    </ol>
+  </nav>
+
+  <div class="title-container">
+    <h1 class="title">Manage Addresses</h1>
+  </div>
+
+  <hr />
+
+  <button (click)="onTestButton()" class="btn btn-info testerClass">Toggle address</button>
+  <br />
+  <div *ngIf="!mockData.hasAddress; else elseBlock">
+    <p>You do not have any addresses stored in your book. Please click on the "Add a New Shipping Address" button to update
+      your address book.</p>
+  </div>
+  <ng-template #elseBlock>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card address-body" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Default</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ mockData.defaultAddress.name }}</h6>
+            <p class="card-text card-address">{{ mockData.defaultAddress.mainAddress }}</p>
+            <p class="card-text card-address">{{ mockData.defaultAddress.city }}, {{ mockData.defaultAddress.state }} {{ mockData.defaultAddress.zipCode }}</p>
+            <p class="card-text card-address">{{ mockData.defaultAddress.country }}</p>
+            <p class="card-text card-address">Phone number: {{ mockData.defaultAddress.phoneNumber }}</p>
+            <a href="#" routerLink="edit-address" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let address of mockData.addresses" class="col-md-3">
+        <div class="card address-body" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Secondary</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ address.name }}</h6>
+            <p class="card-text card-address">{{address.mainAddress }}</p>
+            <p class="card-text card-address">{{ address.city }}, {{ address.state }} {{ address.zipCode }}</p>
+            <p class="card-text card-address">{{ address.country }}</p>
+            <p class="card-text card-address">Phone number: {{ address.phoneNumber }}</p>
+            <a href="#" routerLink="edit-address" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-template>
+
+  <button routerLink="new-address" class="btn btn-info">Add a New Shipping Address</button>
+
+</div>

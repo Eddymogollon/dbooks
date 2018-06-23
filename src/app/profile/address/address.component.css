@@ -41,3 +41,19 @@
   border-radius: 0px;
   padding: 12px 35px;
 }
+
+
+.card-address {
+  margin: auto;
+}
+
+.address-body {
+  margin: 30px 0px;
+}
+
+/* TESTEST */
+
+.testerClass {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}

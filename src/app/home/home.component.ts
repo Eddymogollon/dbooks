@@ -17,6 +17,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  doSomething() {
+    console.log('Doing something');
+    this.dataStorageService.changeName();
+  }
+
   createData() {
     this.dataStorageService.storeData()
       .subscribe(

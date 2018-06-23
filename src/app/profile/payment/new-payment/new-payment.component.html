@@ -1,0 +1,50 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/home">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/profile">Profile</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/profile/payment">Payment</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">New Payment</li>
+    </ol>
+  </nav>
+
+  <div class="title-container">
+    <h1 class="title">Add new payment</h1>
+  </div>
+
+  <hr />
+
+  <div class="account-container">
+
+    <form>
+      <div class="form">
+        <div class="col-3">
+          <label>Name on card</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+        <div class="col-3">
+          <label>Card number</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+        <div class="col-3">
+          <label>Exp date (MM/YYYY)</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+        <div class="col-3">
+          <label>Security Code</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+      </div>
+      <br />
+      <button class="btn btn-warning">Add your card</button>
+    </form>
+  </div>
+
+</div>

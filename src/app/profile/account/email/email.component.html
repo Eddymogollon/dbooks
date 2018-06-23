@@ -1,0 +1,31 @@
+<div class="container">
+
+  <!-- {{ email }} -->
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/profile">Profile</a></li>
+      <li class="breadcrumb-item"><a routerLink="/profile/account">Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Email</li>
+    </ol>
+  </nav>
+
+  <div class="title-container">
+    <h1 class="title">Change your email</h1>
+  </div>
+
+  <hr />
+
+  <div class="account-container">
+    <form #emailForm="ngForm">
+      <input class="form-control" name="currentPassword" type="password" placeholder="Current password" ngModel>
+      <input class="form-control" name="newEmail" type="text" placeholder="New email" ngModel>
+      <button class="btn btn-info" (click)="onChangeEmail(emailForm, 'submit')" type="submit">Save Changes</button>
+      <button class="btn btn-link" (click)="onChangeEmail(emailForm, 'cancel')" type="submit">Cancel</button>
+    </form>
+
+  </div>
+
+</div>
+

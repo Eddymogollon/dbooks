@@ -1,6 +1,6 @@
 .container {
   padding: 20px 40px;
-  width: 50%
+  width: 60%
 }
 
 .bar {
@@ -32,9 +32,10 @@
 }
 
 .account-container input {
-  width: 250px;
+  width: 350px;
   border-radius: 0px;
   margin-bottom: 5px;
+  padding: 10px 15px;
 }
 
 .btn {

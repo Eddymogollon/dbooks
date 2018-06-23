@@ -1,8 +1,12 @@
 Todo:
 Authentication guard
 Link user information to server
-fake payment address
-
+Fake payment address
+Validation
+Fix bootstrap header
+Put all profile info into profile folder
+Breadcrumbs
+Mobile phone number
 
 Done:
 Create authentication

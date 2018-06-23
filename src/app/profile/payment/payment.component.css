@@ -1,6 +1,6 @@
 .container {
   padding: 20px 40px;
-  width: 50%
+  width: 90%
 }
 
 .bar {
@@ -40,4 +40,8 @@
 .btn {
   border-radius: 0px;
   padding: 10px 30px;
+}
+
+.card-address {
+  margin: auto;
 }
