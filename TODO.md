@@ -2,17 +2,17 @@ Todo:
 - Authentication guard
 - Validation
 - Change bootstrap header
-- Address and payment should redirect
-- Change logo
-- Change title
-- Fix bug with default and secondary in payments
-- Delete default payment
 
 Done recently:
 - Fix bug with default and secondary in address
 - Profile settings should upload when the information is loaded
 - When logged in, login looks first and then logout
 - Delete default address
+- Change logo
+- Change title
+- Address and payment should redirect
+- Fix bug with default and secondary in payments
+- Delete default payment
 
 Done:
 Create authentication

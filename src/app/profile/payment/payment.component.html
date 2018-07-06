@@ -19,44 +19,46 @@
   <hr />
 
   <br />
-  <div *ngIf="!hasPayment else elseBlock">
-    <p>You do not have any payment methods stored. Please click on the "Add New Payment Method" button to add a new payment
+
+  <div [ngSwitch]="hasPayment">
+    <div *ngSwitchCase="null"></div>
+    <div *ngSwitchCase="false"><p>You do not have any payment methods stored. Please click on the "Add New Payment Method" button to add a new payment
       method.
-    </p>
-  </div>
-  <ng-template #elseBlock>
+    </p></div>
+    <div *ngSwitchCase="true">
 
 
-    <div class="row">
+      <div class="row">
 
-      <div *ngIf="defaultPayment" class="col-md-4">
-        <div class="card address-body" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Default</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ defaultPayment.name }}</h6>
-            <p class="card-text card-address">Expires: {{ defaultPayment.expDate }}</p>
-            <p class="card-text card-address">Credit card: {{ defaultPayment.cardNumber }}</p>
-            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        <div *ngIf="hasDefaultPayment" class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Default</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ defaultPayment.name }}</h6>
+              <p class="card-text card-address">Expires: {{ defaultPayment.expDate }}</p>
+              <p class="card-text card-address">Credit card: {{ defaultPayment.cardNumber }}</p>
+              <button type="button" (click)='onRemoveDefaultAddress()' class="btn btn-outline-danger btn-sm">Delete</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div *ngFor="let payment of listPayments" class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Secondary</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ payments[payment].name }}</h6>
-            <p class="card-text card-address">Expires: {{ payments[payment].expDate }}</p>
-            <p class="card-text card-address">Credit card: {{ payments[payment].cardNumber }}</p>
+        <div *ngFor="let payment of listPayments" class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Secondary</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ payments[payment].name }}</h6>
+              <p class="card-text card-address">Expires: {{ payments[payment].expDate }}</p>
+              <p class="card-text card-address">Credit card: {{ payments[payment].cardNumber }}</p>
 
-            <button type="button" (click)='onRemovePayment(payment)' class="btn btn-outline-danger btn-sm">Delete</button>
-            <button type="button" (click)='onMakeDefault(payment)' class="btn btn-outline-secondary btn-sm">Make Default</button>
+              <button type="button" (click)='onRemovePayment(payment)' class="btn btn-outline-danger btn-sm">Delete</button>
+              <button type="button" (click)='onMakeDefault(payment)' class="btn btn-outline-secondary btn-sm">Make Default</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-  </ng-template>
   <br />
   <button routerLink="new-payment" class="btn btn-info">Add New Payment Method</button>
 

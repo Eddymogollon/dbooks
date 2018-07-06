@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-payment',
   templateUrl: './new-payment.component.html',
@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 })
 export class NewPaymentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,7 +40,7 @@ export class NewPaymentComponent implements OnInit {
       }
 
       alert('New payment method added');
-
+      this.router.navigate(['/profile/payment']);
     }
 
     form.reset();
