@@ -15,7 +15,12 @@ export class HeaderComponent implements OnInit {
   constructor(private dataStorageService: DataStorageService,
     private authService: AuthService) { }
 
-  ngOnInit() { }
+  isUserAuthenticated = null;
+
+  ngOnInit() {
+    this.isUserAuthenticated = !this.authService.isAuthenticated() ? true : false;
+    console.log(this.isUserAuthenticated);
+  }
 
   onLogout() {
     this.authService.logout();

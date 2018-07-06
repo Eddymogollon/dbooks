@@ -1,15 +1,18 @@
 Todo:
-Authentication guard
-Fake payment address
-Validation
-Fix bootstrap header
-Put all profile info into profile folder
+- Authentication guard
+- Validation
+- Change bootstrap header
+- Address and payment should redirect
+- Change logo
+- Change title
+- Fix bug with default and secondary in payments
+- Delete default payment
 
 Done recently:
-Link user information to server
-Mobile phone number
-Breadcrumbs
-
+- Fix bug with default and secondary in address
+- Profile settings should upload when the information is loaded
+- When logged in, login looks first and then logout
+- Delete default address
 
 Done:
 Create authentication
@@ -19,6 +22,11 @@ Added persistence to authentication
 Create logout button
 Change header when user is authenticated
 Improved changes with routing
+Link user information to server
+Mobile phone number
+Breadcrumbs
+Fake payment address
+Put all profile info into profile folder
 
 
 

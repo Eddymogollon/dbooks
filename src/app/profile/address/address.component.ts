@@ -9,83 +9,11 @@ import * as firebase from 'firebase';
 })
 export class AddressComponent implements OnInit {
 
-  hasAddress = false;
-  addresses = [];
+  hasAddress = null;
+  addresses = {};
   listAddresses = [];
-  defaultAddress = {
-    keyCode: null
-  };
-
-  mockData = {
-    hasAddress: true,
-    defaultAddress: {
-      name: 'Eddy Jesus Mogollon',
-      streetAddress1: '24 Jefferson Avenue',
-      streetAddress2: '',
-      country: 'United States',
-      city: 'Jersey City',
-      state: 'NJ',
-      zipCode: '07301',
-      phoneNumber: '7862221668',
-      instructions: 'Ring the bell...'
-    },
-    addresses: [{
-        name: '1Eddy Jesus Mogollon',
-        streetAddress1: '24 Jefferson Avenue',
-        streetAddress2: '',
-        country: 'United States',
-        city: 'Jersey City',
-        state: 'NJ',
-        zipCode: '07301',
-        phoneNumber: '7862221668',
-        instructions: 'Ring the bell...'
-      },
-      {
-        name: '2Eddy Jesus Mogollon',
-        streetAddress1: '24 Jefferson Avenue',
-        streetAddress2: '',
-        country: 'United States',
-        city: 'Jersey City',
-        state: 'NJ',
-        zipCode: '07301',
-        phoneNumber: '7862221668',
-        instructions: 'Ring the bell...'
-      },
-      {
-        name: '3Eddy Jesus Mogollon',
-        streetAddress1: '24 Jefferson Avenue',
-        streetAddress2: '',
-        country: 'United States',
-        city: 'Jersey City',
-        state: 'NJ',
-        zipCode: '07301',
-        phoneNumber: '7862221668',
-        instructions: 'Ring the bell...'
-      }],
-      addressesTest: {
-        '123': {
-        name: '1Eddy Jesus Mogollon',
-        streetAddress1: '24 Jefferson Avenue',
-        streetAddress2: '',
-        country: 'United States',
-        city: 'Jersey City',
-        state: 'NJ',
-        zipCode: '07301',
-        phoneNumber: '7862221668',
-        instructions: 'Ring the bell...'
-      },
-      '456': {
-        name: '2Eddy Jesus Mogollon',
-        streetAddress1: '24 Jefferson Avenue',
-        streetAddress2: '',
-        country: 'United States',
-        city: 'Jersey City',
-        state: 'NJ',
-        zipCode: '07301',
-        phoneNumber: '7862221668',
-      }
-    }
-  };
+  defaultAddress = null;
+  hasDefaultAddress = null;
 
   constructor() { }
 
@@ -98,14 +26,20 @@ export class AddressComponent implements OnInit {
         console.log(allAddresses.val());
         console.log(defaultAddress.val());
 
-        if (allAddresses.val() || defaultAddress.val()) {
+        if (allAddresses.val()) {
           this.addresses = allAddresses.val();
+          this.hasAddress = true;
+          this.listAddresses = Object.keys(this.addresses);
+        }
+
+        if (defaultAddress.val()) {
           this.defaultAddress = defaultAddress.val();
           this.hasAddress = true;
-
-          this.listAddresses = Object.keys(this.addresses);
-
+          this.hasDefaultAddress = true;
         }
+
+        this.hasAddress = (defaultAddress.val() || allAddresses.val()) ? true : false;
+
       }
     });
 
@@ -121,21 +55,34 @@ export class AddressComponent implements OnInit {
     this.addresses[addressId] = null;
   }
 
+  onRemoveDefaultAddress(addressId) {
+    const user = firebase.auth().currentUser;
+    const address = firebase.database().ref(`/users/${user.uid}/defaultAddress`).remove();
+    this.hasDefaultAddress = false;
+    this.defaultAddress = null;
+  }
+
   onMakeDefault(addressId) {
     const user = firebase.auth().currentUser;
 
-    const defaultAddress = this.defaultAddress;
-    this.defaultAddress = this.addresses[addressId];
     const index = this.listAddresses.indexOf(addressId);
-    this.listAddresses[index] = defaultAddress.keyCode;
-    console.log(this.listAddresses);
+    console.log(this.defaultAddress);
+    if (!this.defaultAddress) {
+      this.defaultAddress = this.addresses[addressId];
+      this.listAddresses.splice(index, 1);
+      this.hasDefaultAddress = true;
+      console.log(this.defaultAddress);
+    } else {
+      const defaultAddress = this.defaultAddress;
+      this.defaultAddress = this.addresses[addressId];
 
-    this.addresses[defaultAddress.keyCode] = defaultAddress;
+      this.listAddresses[index] = defaultAddress.keyCode;
+      this.addresses[defaultAddress.keyCode] = defaultAddress;
+    }
+
     this.addresses[addressId] = null;
-
     firebase.database().ref(`/users/${user.uid}/addresses`).update(this.addresses);
     firebase.database().ref(`/users/${user.uid}/defaultAddress`).update(this.defaultAddress);
-
   }
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
-import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-new-address',
@@ -41,14 +40,6 @@ export class NewAddressComponent implements OnInit {
 
       const formData = {country, fullName, streetAddress1, streetAddress2,
         city, state, zipCode, phoneNumber, instruction, keyCode };
-
-      // let oldDefaultAddress;
-
-      // if (isDefault) {
-      //   oldDefaultAddress = await firebase.database().ref(`/users/${user.uid}/defaultAddress`).once('value');
-      //   oldDefaultAddress = oldDefaultAddress.val();
-      //   firebase.database().ref(`/users/${uid}/defaultAddress`).set(formData);
-      // }
 
       if (allAddresses === null) {
         // firebase.database().ref(`/users/${uid}/addresses`).set([(isDefault ? oldDefaultAddress : formData)]);

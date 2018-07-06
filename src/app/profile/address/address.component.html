@@ -19,48 +19,56 @@
   <hr />
 
   <br />
+
+  <div [ngSwitch]="hasAddress">
+    <div *ngSwitchCase="null"></div>
+    <div *ngSwitchCase="false"><p>You do not have any addresses stored in your book. Please click on the "Add a New Shipping Address" button to update
+      your address book.</p></div>
+    <div *ngSwitchCase="true">
+      <div class="row">
+
+
+        <div *ngIf="hasDefaultAddress" class="col-md-3">
+          <div class="card address-body" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Default</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ defaultAddress.fullName }}</h6>
+              <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}</p>
+              <p class="card-text card-address">{{ defaultAddress.city }}, {{ defaultAddress.state }} {{ defaultAddress.zipCode }}</p>
+                <p class="card-text card-address">{{ defaultAddress.country }}</p>
+              <p class="card-text card-address">Phone number: {{ defaultAddress.phoneNumber }}</p>
+              <button type="button" (click)='onRemoveDefaultAddress()' class="btn btn-outline-danger btn-sm">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngFor="let address of listAddresses" class="col-md-3">
+          <div class="card address-body" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Secondary</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ addresses[address].fullName }}</h6>
+              <p class="card-text card-address">{{ addresses[address].streetAddress1 }}</p>
+              <p class="card-text card-address">{{ addresses[address].city }}, {{ addresses[address].state }} {{ addresses[address].zipCode }}</p>
+              <p class="card-text card-address">{{ addresses[address].country }}</p>
+              <p class="card-text card-address">Phone number: {{ addresses[address].phoneNumber }}</p>
+              <!-- <a href="#" routerLink="edit-address" class="card-link">Edit</a> -->
+              <button type="button" (click)='onRemoveAddress(address)' class="btn btn-outline-danger btn-sm">Delete</button>
+              <button type="button" (click)='onMakeDefault(address)' class="btn btn-outline-secondary btn-sm">Make Default</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <div *ngIf="!hasAddress; else elseBlock">
-    <p>You do not have any addresses stored in your book. Please click on the "Add a New Shipping Address" button to update
-      your address book.</p>
+
   </div>
   <ng-template #elseBlock>
 
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card address-body" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Default</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ defaultAddress.fullName }}</h6>
-            <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}</p>
-            <p class="card-text card-address">{{ defaultAddress.city }}, {{ defaultAddress.state }} {{ defaultAddress.zipCode }}</p>
-            <p class="card-text card-address">{{ defaultAddress.country }}</p>
-            <p class="card-text card-address">Phone number: {{ defaultAddress.phoneNumber }}</p>
-            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-          </div>
-        </div>
-      </div>
 
-
-
-
-      <div *ngFor="let address of listAddresses" class="col-md-3">
-        <div class="card address-body" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Secondary</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ addresses[address].fullName }}</h6>
-            <p class="card-text card-address">{{ addresses[address].streetAddress1 }}</p>
-            <p class="card-text card-address">{{ addresses[address].city }}, {{ addresses[address].state }} {{ addresses[address].zipCode }}</p>
-            <p class="card-text card-address">{{ addresses[address].country }}</p>
-            <p class="card-text card-address">Phone number: {{ addresses[address].phoneNumber }}</p>
-            <!-- <a href="#" routerLink="edit-address" class="card-link">Edit</a> -->
-            <button type="button" (click)='onRemoveAddress(address)' class="btn btn-outline-danger btn-sm">Delete</button>
-            <button type="button" (click)='onMakeDefault(address)' class="btn btn-outline-secondary btn-sm">Make Default</button>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
 
 
   </ng-template>

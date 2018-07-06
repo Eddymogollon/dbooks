@@ -17,20 +17,21 @@
         <a class="nav-link" routerLink="/book_details">Description</a>
       </li>
 
+
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/sign_in"
-          *ngIf="!authService.isAuthenticated()">Sign In</a>
+          *ngIf="isUserAuthenticated === false">Sign In</a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/profile"
-          *ngIf="authService.isAuthenticated()">Profile</a>
+          *ngIf="isUserAuthenticated === true">Profile</a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" routerLink="/home"
           (click)="onLogout()"
-          *ngIf="authService.isAuthenticated()">Logout</a>
+          *ngIf="isUserAuthenticated === true">Logout</a>
       </li>
     </ul>
   </div>

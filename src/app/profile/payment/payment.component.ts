@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-payment',
@@ -10,7 +12,7 @@ export class PaymentComponent implements OnInit {
   hasPayment = false;
   payments = [];
   listPayments = [];
-  defaultPayments = {};
+  defaultPayment = null;
 
   mockData = {
 
@@ -93,6 +95,51 @@ export class PaymentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        // User is signed in.
+        const allPayments = await firebase.database().ref(`/users/${user.uid}/payments`).once('value');
+        const defaultPayment = await firebase.database().ref(`/users/${user.uid}/defaultPayment`).once('value');
+        console.log(allPayments.val());
+        console.log(defaultPayment.val());
+
+        if (allPayments.val() || defaultPayment.val()) {
+          this.payments = allPayments.val();
+          this.defaultPayment = defaultPayment.val();
+          this.hasPayment = true;
+
+          this.listPayments = Object.keys(this.payments);
+
+        }
+      }
+    });
+  }
+
+  onRemovePayment(paymentId) {
+    const user = firebase.auth().currentUser;
+
+    console.log(paymentId);
+    const address = firebase.database().ref(`/users/${user.uid}/payments/${paymentId}`).remove();
+    const index = this.listPayments.indexOf(paymentId);
+    this.listPayments.splice(index, 1);
+    this.payments[paymentId] = null;
+  }
+
+  onMakeDefault(paymentId) {
+    const user = firebase.auth().currentUser;
+
+    const defaultPayment = this.defaultPayment;
+    this.defaultPayment = this.payments[paymentId];
+    const index = this.listPayments.indexOf(paymentId);
+    this.listPayments[index] = defaultPayment.keyCode;
+    console.log(this.listPayments);
+
+    this.payments[defaultPayment.keyCode] = defaultPayment;
+    this.payments[paymentId] = null;
+
+    firebase.database().ref(`/users/${user.uid}/payments`).update(this.payments);
+    firebase.database().ref(`/users/${user.uid}/defaultPayment`).update(this.defaultPayment);
+
   }
 
   onTestButton() {

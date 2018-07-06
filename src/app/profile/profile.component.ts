@@ -10,10 +10,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ProfileComponent implements OnInit {
 
-  fullName = '...';
-  email = '...';
+  fullName = null;
+  email = null;
   defaultAddress = null;
-
+  defaultPayment = null;
+  hasNameAndEmail = null;
+  hasDefaultAddress = null;
+  hasDefaultPayment = null;
 
   constructor(private authService: AuthService) { }
 
@@ -39,9 +42,15 @@ export class ProfileComponent implements OnInit {
           this.fullName = userInfo.name;
           this.email = userInfo.email;
 
-          this.defaultAddress = userInfo.defaultAddress;
+          this.hasDefaultAddress = userInfo.defaultAddress ? true : false;
+          this.hasNameAndEmail = userInfo.name ? true : false;
+          this.hasDefaultPayment = userInfo.defaultPayment ? true : false;
+          // console.log(userInfo.defaultAddress);
 
+          this.defaultAddress = userInfo.defaultAddress;
+          this.defaultPayment = userInfo.defaultPayment;
         });
+
 
       }
       return;

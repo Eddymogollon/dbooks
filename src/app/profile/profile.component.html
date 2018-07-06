@@ -14,16 +14,24 @@
   </div>
 
   <hr />
-
+  <div [ngSwitch]="hasNameAndEmail">
+    <div *ngSwitchCase="null">null</div>
+    <div *ngSwitchCase="false">false</div>
+    <div *ngSwitchCase="true">true</div>
+  </div>
 
   <div class="row settings-container">
     <div class="col-md-8">
       <div class="setting">
         <h2>Account Settings</h2>
-        <p>
-          <strong>Full Name:</strong> {{ fullName }}</p>
-        <p>
-          <strong>Email Address:</strong> {{ email }}</p>
+        <div [ngSwitch]="hasNameAndEmail">
+          <div *ngSwitchCase="null"></div>
+          <div *ngSwitchCase="false">No user information</div>
+          <div *ngSwitchCase="true">
+            <p><strong>Full Name:</strong> {{ fullName }}</p>
+            <p><strong>Email Address:</strong> {{ email }}</p></div>
+        </div>
+
 
         <button class="btn btn-info btn-setting" routerLink="/profile/account">Manage Account Settings</button>
       </div>
@@ -35,16 +43,22 @@
       <div class="setting">
 
         <h2>Your Addresses</h2>
-        <div *ngIf="defaultAddress; else elseBlock">
-            <p><strong>Default address</strong></p>
+
+        <div [ngSwitch]="hasDefaultAddress">
+          <div *ngSwitchCase="null"></div>
+          <div *ngSwitchCase="false">
+            <p>You do not have a default address in your profile.</p>
+          </div>
+          <div *ngSwitchCase="true">
+            <p>
+              <strong>Default address</strong>
+            </p>
             <h6 class="card-subtitle mb-2 text-muted">{{ defaultAddress.fullName }}</h6>
             <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}</p>
             <p class="card-text card-address">{{ defaultAddress.city }}, {{ defaultAddress.state }} {{ defaultAddress.zipCode }}</p>
             <p class="card-text card-address">{{ defaultAddress.country }}</p>
+          </div>
         </div>
-        <ng-template #elseBlock>
-            <p>You do not have any addresses stored in your book.</p>
-        </ng-template>
 
         <button class="btn btn-info btn-setting" routerLink="/profile/address">Manage Addresses</button>
       </div>
@@ -56,10 +70,17 @@
 
       <div class="setting">
         <h2>Payments</h2>
-        <p>No Payment methods</p>
-        <p>
-          <a>Add a New Payment Method</a>
-        </p>
+
+        <div [ngSwitch]="hasDefaultPayment">
+            <div *ngSwitchCase="null"></div>
+            <div *ngSwitchCase="false"><p>You do not have a default payment method in your profile.</p></div>
+            <div *ngSwitchCase="true"><p>
+                <strong>Default payment</strong>
+              </p>
+              <h6 class="card-subtitle mb-2 text-muted">{{ defaultPayment.name }}</h6>
+              <p class="card-text card-address">Exp date: {{ defaultPayment.expDate }}</p>
+              <p class="card-text card-address">Credit card: ends in... {{ defaultPayment.cardNumber | slice:15:19 }}</p></div>
+          </div>
 
         <button class="btn btn-info btn-setting" routerLink="/profile/payment">Manage Payment Options</button>
       </div>
