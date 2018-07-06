@@ -6,7 +6,7 @@
         <a routerLink="/home">Home</a>
       </li>
       <li class="breadcrumb-item">
-        <a routerLink="/address">Address</a>
+        <a routerLink="/profile/address">Address</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">New Address</li>
     </ol>
@@ -21,7 +21,7 @@
 
   <div class="account-container">
     <h2>Change Your Username</h2>
-    <form #nameForm="ngForm">
+    <form #newAddressForm="ngForm">
       <label>Country/Region</label>
       <input class="form-control" type="text" name="country" placeholder="United States" ngModel>
       <label>Full Name</label>
@@ -35,15 +35,16 @@
       <label>State / Province / Region</label>
       <input class="form-control" type="text" name="state" placeholder="" ngModel>
       <label>Zip Code</label>
-      <input class="form-control" type="text" name="zip_code" placeholder="" ngModel>
+      <input class="form-control" type="text" name="zipCode" placeholder="" ngModel>
       <label>Phone number</label>
-      <input class="form-control" type="text" name="phone_number" placeholder="" ngModel>
+      <input class="form-control" type="text" name="phoneNumber" placeholder="" ngModel>
 
       <h2>Add delivery instructions</h2>
       <label>Do we need a security code or a call box number to access this building?</label>
-      <input class="form-control" type="text" name="fullName" placeholder="Please ring the bell..." ngModel>
+      <input class="form-control" type="text" name="instruction" placeholder="Please ring the bell..." ngModel>
 
-      <button class="btn btn-info" type="submit">Save Changes</button>
+      <button class="btn btn-info" type="submit" (click)="onChangeAddress(newAddressForm, 'submit')">Save Changes</button>
+      <button class="btn btn-info" type="submit" (click)="onChangeAddress(newAddressForm, 'cancel')">Cancel</button>
     </form>
   </div>
 

@@ -1,12 +1,15 @@
 Todo:
 Authentication guard
-Link user information to server
 Fake payment address
 Validation
 Fix bootstrap header
 Put all profile info into profile folder
-Breadcrumbs
+
+Done recently:
+Link user information to server
 Mobile phone number
+Breadcrumbs
+
 
 Done:
 Create authentication

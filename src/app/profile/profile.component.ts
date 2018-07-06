@@ -12,30 +12,24 @@ export class ProfileComponent implements OnInit {
 
   fullName = '...';
   email = '...';
+  defaultAddress = null;
 
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('stuff happens');
+
     this.getUserInfo();
   }
 
 
   getUserInfo() {
-    console.log('edd');
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('hello');
-        // const usersRef = firebase.database().ref('users/');
         console.log(user.uid);
 
-        // usersRef.on('value', function(snapshot) {
-        //   console.log(snapshot.val());
-        // }, function (error) {
-        //   console.log('Error: ' + error.code);
-        // });
 
         firebase.database().ref(`/users/${user.uid}`).once('value').then((snapshot) => {
           const userInfo = snapshot.val();
@@ -45,7 +39,8 @@ export class ProfileComponent implements OnInit {
           this.fullName = userInfo.name;
           this.email = userInfo.email;
 
-          // ...
+          this.defaultAddress = userInfo.defaultAddress;
+
         });
 
       }

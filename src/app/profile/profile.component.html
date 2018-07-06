@@ -33,11 +33,18 @@
   <div class="row settings-container">
     <div class="col-md-8">
       <div class="setting">
+
         <h2>Your Addresses</h2>
-        <p>
-          <strong>Physical Address:</strong> 123 Main Street</p>
-        <p>
-          <strong>Shipping Address:</strong> 456 Liberty Street</p>
+        <div *ngIf="defaultAddress; else elseBlock">
+            <p><strong>Default address</strong></p>
+            <h6 class="card-subtitle mb-2 text-muted">{{ defaultAddress.fullName }}</h6>
+            <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}</p>
+            <p class="card-text card-address">{{ defaultAddress.city }}, {{ defaultAddress.state }} {{ defaultAddress.zipCode }}</p>
+            <p class="card-text card-address">{{ defaultAddress.country }}</p>
+        </div>
+        <ng-template #elseBlock>
+            <p>You do not have any addresses stored in your book.</p>
+        </ng-template>
 
         <button class="btn btn-info btn-setting" routerLink="/profile/address">Manage Addresses</button>
       </div>
