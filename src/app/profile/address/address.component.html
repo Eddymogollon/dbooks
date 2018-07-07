@@ -33,7 +33,7 @@
             <div class="card-body">
               <h5 class="card-title">Default</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ defaultAddress.fullName }}</h6>
-              <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}</p>
+              <p class="card-text card-address">{{ defaultAddress.streetAddress1 }}. {{ defaultAddress.streetAddress2 }}</p>
               <p class="card-text card-address">{{ defaultAddress.city }}, {{ defaultAddress.state }} {{ defaultAddress.zipCode }}</p>
                 <p class="card-text card-address">{{ defaultAddress.country }}</p>
               <p class="card-text card-address">Phone number: {{ defaultAddress.phoneNumber }}</p>
@@ -47,7 +47,7 @@
             <div class="card-body">
               <h5 class="card-title">Secondary</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ addresses[address].fullName }}</h6>
-              <p class="card-text card-address">{{ addresses[address].streetAddress1 }}</p>
+              <p class="card-text card-address">{{ addresses[address].streetAddress1 }} {{ addresses[address].streetAddress2 }}</p>
               <p class="card-text card-address">{{ addresses[address].city }}, {{ addresses[address].state }} {{ addresses[address].zipCode }}</p>
               <p class="card-text card-address">{{ addresses[address].country }}</p>
               <p class="card-text card-address">Phone number: {{ addresses[address].phoneNumber }}</p>

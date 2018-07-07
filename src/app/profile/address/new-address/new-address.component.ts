@@ -33,6 +33,12 @@ export class NewAddressComponent implements OnInit {
       return;
     }
 
+    if (country === '' || fullName === '' || streetAddress1 === '' || city === '' || state === '' || zipCode === '' || phoneNumber === '') {
+      alert('Missing at least one mandatory field. Please fill out all information before submitting.');
+      return;
+    }
+
+
     if (confirm(`Are you sure you want to add a new address?`)) {
       // firebase.database().ref(`/users/${user.uid}`).once('value').then((snapshot) => {
       let allAddresses = await firebase.database().ref(`/users/${user.uid}/addresses`).once('value');

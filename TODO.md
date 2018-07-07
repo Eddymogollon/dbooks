@@ -1,7 +1,6 @@
 Todo:
-- Authentication guard
 - Validation
-- Change bootstrap header
+- Edit
 
 Done recently:
 - Fix bug with default and secondary in address
@@ -13,6 +12,9 @@ Done recently:
 - Address and payment should redirect
 - Fix bug with default and secondary in payments
 - Delete default payment
+- Change bootstrap header
+- Logout doesn't work. Check sign and sign out
+- Authentication guard
 
 Done:
 Create authentication

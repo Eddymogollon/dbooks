@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   hasDefaultAddress = null;
   hasDefaultPayment = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -52,6 +52,8 @@ export class ProfileComponent implements OnInit {
         });
 
 
+      } else {
+        this.router.navigate(['/sign_in']);
       }
       return;
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-
+import * as firebase from 'firebase';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 
@@ -18,8 +18,17 @@ export class HeaderComponent implements OnInit {
   isUserAuthenticated = null;
 
   ngOnInit() {
-    this.isUserAuthenticated = !this.authService.isAuthenticated() ? true : false;
-    console.log(this.isUserAuthenticated);
+    // this.isUserAuthenticated = !this.authService.isAuthenticated() ? true : false;
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        this.isUserAuthenticated = true;
+      } else {
+        this.isUserAuthenticated = false;
+      }
+      return;
+    });
   }
 
   onLogout() {

@@ -22,6 +22,8 @@ import { BooksComponent } from './books/books.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { AuthGuard } from './auth/auth-guard.service';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -29,9 +31,10 @@ const appRoutes: Routes = [
   { path: 'book_details', component: BookdetailsComponent },
   { path: 'sign_in', component: SigninComponent },
   { path: 'sign_up', component: SignupComponent },
+  { path: 'profile', component: ProfileComponent, canLoad: [AuthGuard] },
   { path: 'profile/account', component: AccountComponent },
-  { path: 'profile/account/name', component: NameComponent},
-  { path: 'profile/account/email', component: EmailComponent},
+  { path: 'profile/account/name', component: NameComponent },
+  { path: 'profile/account/email', component: EmailComponent },
   { path: 'profile/account/password', component: PasswordComponent},
   { path: 'profile/payment', component: PaymentComponent },
   { path: 'profile/payment/new-payment', component: NewPaymentComponent },
