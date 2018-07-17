@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { DataStorageService } from '../../../shared/data-storage.service';
 import * as firebase from 'firebase';
 import { AuthService } from '../../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-password',
@@ -13,9 +14,14 @@ export class PasswordComponent implements OnInit {
 
   email = '...';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(async (logged_in_user) => {
+      if (!logged_in_user) {
+        this.router.navigate(['/sign_in']);
+      }
+    });
 
     const user = firebase.auth().currentUser;
     console.log(user.uid);

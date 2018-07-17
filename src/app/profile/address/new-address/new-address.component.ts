@@ -58,6 +58,11 @@ export class NewAddressComponent implements OnInit {
   isCountryUSA = null;
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        this.router.navigate(['/sign_in']);
+      }
+    });
   }
 
   onChangeCountry(event) {

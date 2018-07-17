@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address',
@@ -15,7 +16,7 @@ export class AddressComponent implements OnInit {
   defaultAddress = null;
   hasDefaultAddress = null;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -40,6 +41,8 @@ export class AddressComponent implements OnInit {
 
         this.hasAddress = (defaultAddress.val() || allAddresses.val()) ? true : false;
 
+      } else {
+        this.router.navigate(['/sign_in']);
       }
     });
 

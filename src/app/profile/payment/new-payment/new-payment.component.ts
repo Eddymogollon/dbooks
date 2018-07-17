@@ -12,6 +12,11 @@ export class NewPaymentComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        this.router.navigate(['/sign_in']);
+      }
+    });
   }
 
   async onChangePayment(form: NgForm, command) {
