@@ -1,9 +1,5 @@
 Todo:
 - Create homepage
-- Fix header. It shows sign in when it should say logout.
-- Validation when user wants to login
-- Regex for card number
-- Validation for phone number
 
 Done recently:
 - Validation for physical addresses
@@ -13,6 +9,10 @@ Done recently:
 - Validation for password Change Your Password
 - Validation for email in Change Your Password
 - Included validation for country and state, and if country is different, then change it
+- Regex for card number
+- Validation for phone number
+- Fix header. It shows sign in when it should say logout.
+- Validation when user wants to login
 
 Done some time ago:
 - Fix bug with default and secondary in address
