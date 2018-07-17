@@ -67,7 +67,7 @@ export class AddressComponent implements OnInit {
 
     const index = this.listAddresses.indexOf(addressId);
     console.log(this.defaultAddress);
-    if (!this.defaultAddress) {
+    if (!this.defaultAddress) { // If default address is empty
       this.defaultAddress = this.addresses[addressId];
       this.listAddresses.splice(index, 1);
       this.hasDefaultAddress = true;
@@ -79,8 +79,8 @@ export class AddressComponent implements OnInit {
       this.listAddresses[index] = defaultAddress.keyCode;
       this.addresses[defaultAddress.keyCode] = defaultAddress;
     }
-
     this.addresses[addressId] = null;
+
     firebase.database().ref(`/users/${user.uid}/addresses`).update(this.addresses);
     firebase.database().ref(`/users/${user.uid}/defaultAddress`).update(this.defaultAddress);
   }

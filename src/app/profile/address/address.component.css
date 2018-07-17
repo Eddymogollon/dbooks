@@ -51,6 +51,11 @@
   margin: 30px 0px;
 }
 
+.btn {
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
 /* TESTEST */
 
 .testerClass {

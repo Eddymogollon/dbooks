@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
 
 
         firebase.database().ref(`/users/${user.uid}`).once('value').then((snapshot) => {
+          console.log(snapshot);
           const userInfo = snapshot.val();
           console.log(userInfo);
           console.log(userInfo.email);

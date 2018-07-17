@@ -41,6 +41,27 @@ export class EmailComponent implements OnInit {
       return;
     }
 
+    // tslint:disable-next-line:max-line-length
+    const emailRegex = new RegExp('^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$');
+
+    if (!emailRegex.exec(newEmail)) {
+      alert(`The email format is incorrect. Make sure you are typing a valid email. Please try again.`);
+      return;
+    }
+
+    const passRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+
+    if (!passRegex.exec(currentPassword)) {
+      alert(`Current password is not strong enough. Password should be:
+      At least one upper case English letter
+      At least one lower case English letter
+      At least one digit
+      At least one special character
+      Minimum eight in length
+
+      Please try again.`);
+      return;
+    }
 
     if (confirm(`Are you sure you want to change your email to ${newEmail}?`)) {
       firebase.database().ref(`/users/${uid}/email`).set(newEmail);

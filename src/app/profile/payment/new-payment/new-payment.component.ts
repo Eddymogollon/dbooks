@@ -15,7 +15,11 @@ export class NewPaymentComponent implements OnInit {
   }
 
   async onChangePayment(form: NgForm, command) {
-    const { name, cardNumber, expDate, securityCode } = form.value;
+    const { name, expDate, securityCode } = form.value;
+    let { cardNumber } = form.value;
+    const keyCode = (Math.floor(Math.random() * 100000)).toString();
+    const user = firebase.auth().currentUser;
+    const uid = user.uid;
 
     if (command === 'cancel') {
       console.log('User canceled');
@@ -28,29 +32,37 @@ export class NewPaymentComponent implements OnInit {
       return;
     }
 
+    const cardNumberRegex = /^\d{16}$/;
+    const cardNumberRegexDashes = /^\d{4}\-\d{4}\-\d{4}\-\d{4}$/;
+
+    if (cardNumberRegex.exec(cardNumber) != null) {
+      console.log('Numbers are together');
+      cardNumber = `${cardNumber.slice(0, 4)}-${cardNumber.slice(4, 8)}-${cardNumber.slice(8, 12)}-${cardNumber.slice(12, 16)}`;
+    } else if (cardNumberRegexDashes.exec(cardNumber)) {
+      console.log('Number has dashes');
+    } else {
+      alert('Invalid card number. Make sure you type a 16 digit card number');
+      return;
+    }
+
     const expDateRegex = /(0[1-9]|10|11|12)\/20[0-9]{2}/g;
     if (!(expDateRegex.exec(expDate))) {
-      alert('Wrong expiration date format. Please put the expiration date correctly.');
+      alert(`Wrong expiration date format. Please put the expiration date correctly.
+      It should follow the format MM/YYYY and the maximum year is 2099.`);
       return;
     }
 
     const securityCodeRegex = /(^[0-9][0-9][0-9]$)/;
     if (!(securityCodeRegex.exec(securityCode))) {
-      alert('Wrong security code format. Please insert three numbers.');
+      alert('Wrong security code format. A security code needs to be three numbers');
       return;
     }
-
-
-
-    const keyCode = (Math.floor(Math.random() * 100000)).toString();
-    const user = firebase.auth().currentUser;
-    const uid = user.uid;
 
     if (confirm(`Are you sure you want to add a new payment method?`)) {
       let allPayments = await firebase.database().ref(`/users/${user.uid}/payments`).once('value');
       allPayments = allPayments ? allPayments.val() : null;
 
-      const formData = { name, cardNumber, expDate, securityCode };
+      const formData = { name, cardNumber, expDate, securityCode, keyCode };
 
       if (allPayments === null) {
         firebase.database().ref(`/users/${uid}/payments`).set({[keyCode]: formData});

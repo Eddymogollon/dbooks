@@ -22,8 +22,12 @@
   <div class="account-container">
     <h2>Change Your Username</h2>
     <form #newAddressForm="ngForm">
+
       <label>Country/Region*</label>
-      <input class="form-control" type="text" name="country" placeholder="United States" ngModel>
+      <!-- <input class="form-control" type="text" name="country2" placeholder="United States" ngModel> -->
+      <select ngModel (ngModelChange)="onChangeCountry($event)" name="country" class="custom-select">
+          <option *ngFor="let country of countriesList" value="{{country}}">{{country}}</option>
+        </select>
       <label>Full Name*</label>
       <input class="form-control" type="text" name="fullName" placeholder="" ngModel>
       <label>Street address*</label>
@@ -33,10 +37,18 @@
       <label>City*</label>
       <input class="form-control" type="text" name="city" placeholder="" ngModel>
       <label>State / Province / Region*</label>
-      <input class="form-control" type="text" name="state" placeholder="" ngModel>
+      <div *ngIf="isCountryUSA; else otherCountry">
+        <select ngModel (ngModelChange)="onChangeState($event)" name="state" class="custom-select">
+          <option *ngFor="let state of statesList" value="{{state.abbrev}}">{{state.name}}</option>
+        </select></div>
+      <ng-template #otherCountry>
+          <input class="form-control" type="text" name="state" placeholder="" ngModel>
+      </ng-template>
+
+
       <label>Zip Code*</label>
       <input class="form-control" type="text" name="zipCode" placeholder="" ngModel>
-      <label>Phone number*</label>
+      <label>US Phone number*</label>
       <input class="form-control" type="text" name="phoneNumber" placeholder="" ngModel>
 
       <h2>Add delivery instructions</h2>

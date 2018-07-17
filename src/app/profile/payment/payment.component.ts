@@ -66,17 +66,28 @@ export class PaymentComponent implements OnInit {
 
     const index = this.listPayments.indexOf(paymentId);
     console.log(this.defaultPayment);
-    if (!this.defaultPayment) {
+
+    if (!this.defaultPayment) { // If default payment is empty
       this.defaultPayment = this.payments[paymentId];
       this.listPayments.splice(index, 1);
       this.hasDefaultPayment = true;
+      console.log('No default payment');
       console.log(this.defaultPayment);
+      console.log(this.listPayments);
+
     } else {
       const defaultPayment = this.defaultPayment;
       this.defaultPayment = this.payments[paymentId];
 
       this.listPayments[index] = defaultPayment.keyCode;
       this.payments[defaultPayment.keyCode] = defaultPayment;
+
+      console.log('Has default payment');
+      console.log(this.defaultPayment);
+      console.log(this.listPayments);
+      console.log(this.payments);
+
+
     }
 
     this.payments[paymentId] = null;

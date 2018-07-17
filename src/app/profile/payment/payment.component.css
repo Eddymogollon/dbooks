@@ -38,8 +38,14 @@
 }
 
 .btn {
+  margin-right: 5px;
+  margin-top: 10px;
 }
 
 .card-address {
   margin: auto;
+}
+
+.card {
+  margin-top: 10px;
 }
