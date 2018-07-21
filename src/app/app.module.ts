@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -61,7 +61,8 @@ import { bookService } from './shared/books.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    NgbModule.forRoot()
   ],
   providers: [AuthService, DataStorageService, bookService, BookdetailsComponent, BooksComponent, SameAuthorComponent],
   bootstrap: [AppComponent]
