@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import * as bcrypt from 'bcryptjs';
+
 @Component({
   selector: 'app-new-payment',
   templateUrl: './new-payment.component.html',
@@ -67,7 +69,10 @@ export class NewPaymentComponent implements OnInit {
       let allPayments = await firebase.database().ref(`/users/${user.uid}/payments`).once('value');
       allPayments = allPayments ? allPayments.val() : null;
 
-      const formData = { name, cardNumber, expDate, securityCode, keyCode };
+      const salt = bcrypt.genSaltSync(10);
+      const hashedCardNumber = bcrypt.hashSync(cardNumber, salt);
+
+      const formData = { name, cardNumber: cardNumber.slice(15), expDate, securityCode, keyCode, hashedCardNumber };
 
       if (allPayments === null) {
         firebase.database().ref(`/users/${uid}/payments`).set({[keyCode]: formData});

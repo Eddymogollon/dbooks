@@ -79,7 +79,7 @@
               </p>
               <h6 class="card-subtitle mb-2 text-muted default-name">{{ defaultPayment.name }}</h6>
               <p class="card-text card-address">Exp date: {{ defaultPayment.expDate }}</p>
-              <p class="card-text card-address">Credit card: ends in... {{ defaultPayment.cardNumber | slice:15:19 }}</p></div>
+              <p class="card-text card-address">Credit card: ends in... -{{ defaultPayment.cardNumber }}</p></div>
           </div>
 
         <button class="btn btn-info btn-setting" routerLink="/profile/payment">Manage Payment Options</button>

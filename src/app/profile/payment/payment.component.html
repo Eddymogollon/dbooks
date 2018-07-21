@@ -36,7 +36,7 @@
               <h5 class="card-title">Default</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ defaultPayment.name }}</h6>
               <p class="card-text card-address">Expires: {{ defaultPayment.expDate }}</p>
-              <p class="card-text card-address">Credit card: {{ defaultPayment.cardNumber }}</p>
+              <p class="card-text card-address">Credit card: ends in... -{{ defaultPayment.cardNumber }}</p>
               <button type="button" (click)='onRemoveDefaultPayment()' class="btn btn-outline-danger btn-sm">Delete</button>
             </div>
           </div>
@@ -48,7 +48,7 @@
               <h5 class="card-title">Secondary</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ payments[payment].name }}</h6>
               <p class="card-text card-address">Expires: {{ payments[payment].expDate }}</p>
-              <p class="card-text card-address">Credit card: {{ payments[payment].cardNumber }}</p>
+              <p class="card-text card-address">Credit card: ends in... -{{ payments[payment].cardNumber }}</p>
 
               <button type="button" (click)='onRemovePayment(payment)' class="btn btn-outline-danger btn-sm">Delete</button>
               <button type="button" (click)='onMakeDefault(payment)' class="btn btn-outline-secondary btn-sm">Make Default</button>
