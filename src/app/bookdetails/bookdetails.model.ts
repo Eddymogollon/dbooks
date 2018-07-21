@@ -1,4 +1,4 @@
-export class Bookdetail{
+export class Bookdetail {
   public Author: string;
   public Bio: string;
   public Genre: string;

@@ -16,12 +16,12 @@ export class BookdetailsComponent implements OnInit {
   selectedBookPath: String;
   userComment;
   selectedAuthorName: String;
- 
+
 
 
  constructor( private bookService: bookService) { }
 
- 
+
 
   setComments(userComment: String[]){
     this.userComment= userComment.slice();
@@ -48,28 +48,28 @@ export class BookdetailsComponent implements OnInit {
 /*
   fetchComments(){
     this.getComments();
-  } 
+  }
 */
 
 /**************************Showing details of selected book only*********************************/
 OnlySelectedBook(books: Bookdetail[], selectedBookPath: String){
   var temp2: Bookdetail[] = [];
   for(var i = 0; i < books.length; i++){
-    
+
       if((books[i].path) == selectedBookPath){
         temp2.push(books[i]);
         }
-      } 
+      }
       this.books = temp2;
       console.log(this.books);
 }
 SelectedBookGet(){
   this.bookService.getBooks()
   .subscribe(
-    (books: Bookdetail[]) =>{ 
+    (books: Bookdetail[]) =>{
       this.OnlySelectedBook(books, this.selectedBookPath);
     }
-  ) 
+  )
 }
 
 ngOnInit() {
@@ -81,25 +81,25 @@ ngOnInit() {
 
 
   /*************Book ratiny ********/
-  
- 
 
- title = 'Star Rating';  
+
+
+ title = 'Star Rating';
 starList: boolean[] = [true,true,true,true,true];       // create a list which contains status of 5 stars
-rating:number;  
-//Create a function which receives the value counting of stars click, 
+rating:number;
+//Create a function which receives the value counting of stars click,
 //and according to that value we do change the value of that star in list.
 setStar(data:any){
-      this.rating=data+1;                               
-      for(var i=0;i<=4;i++){  
-        if(i<=data){  
-          this.starList[i]=false;  
-        }  
-        else{  
-          this.starList[i]=true;  
-        }  
-     }  
- } 
+      this.rating=data+1;
+      for(var i=0;i<=4;i++){
+        if(i<=data){
+          this.starList[i]=false;
+        }
+        else{
+          this.starList[i]=true;
+        }
+     }
+ }
 
  /********Get authors name*******/
 

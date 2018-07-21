@@ -6,7 +6,7 @@
       <div class="col-lg-1">
          Browse By:
          </div>
-        <div class="col-lg-2" id="browseButton">  
+        <div class="col-lg-2" id="browseButton">
           <div ngbDropdown class="browseBy">
             <button class="btn btn-dark dropdown-toggle" role="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
                 Genre</button>
@@ -15,10 +15,10 @@
                   <a class="dropdown-item" (click)="FiGet()">Fantasy</a>
                   <a class="dropdown-item" (click)="Science()">Non-Fiction</a>
                   <a class="dropdown-item" (click)="ProGet()">Programming</a>
-                  
+
                 </div>
               </div>
-        </div>  
+        </div>
         <div class="col-lg-2" id="topButton">
             <button class="btn btn-dark" (click)="OnlyTop()">Top Sellers</button>
         </div>
@@ -28,14 +28,14 @@
         <div class="col-lg-2" id="AllButton">
             <button class="btn btn-dark" (click)="onGet()">All Books</button>
       </div>
-    
-    
-    
+
+
+
     <!--This Ends the BrowseBy-->
 
    <div class="col-lg-1" id="sortBy">
       <!--This the is SortBy-->
-              <div ngbDropdown class="dropdown">  
+              <div ngbDropdown class="dropdown">
                 <button class="btn btn-dark dropdown-toggle" role="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
                   Sort by:</button>
                   <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu">
@@ -46,7 +46,7 @@
                     <a class="dropdown-item" (click)="sortByRating()">Book Rating</a>
                     <a class="dropdown-item" (click)="sortByRelease()">Release Date</a>
                   </div>
-              </div> 
+              </div>
         </div>
       </div>
       <hr>
@@ -54,9 +54,9 @@
 
       <!--This ends SortBy-->
       <a id="TheseBooks" class="list-inline-item clearfix" *ngFor="let book of books">
-          <div class="container" id="inlineContainer"> 
+          <div class="container" id="inlineContainer">
             <div class="container" id="otherContainer">
-            <a style="text-align: center;"  [routerLink] ="['/bookdetails']">        
+            <a style="text-align: center;"  [routerLink] ="['/bookdetails']">
             <img (click) = "getBook(book)" src= "{{book.path}}" alt="{{ book.Title }}" style="height: 250px; align-self: center;"></a>
             </div>
             <p class="list-inline-item-text" style="font-size:80%; text-align: center; max-width: 250px; word-wrap: break-word;"><b>{{ book.Title }}</b></p>
@@ -69,11 +69,11 @@
             <p class="list-inline-item-text" style="font-size:70%; text-align: center" (click)="buyBook(book)"><u>BUY BOOK</u></p>
             <!--p class="list-inline-item-text" style="font-size:70%; text-align: center">{{ book.PubDate }}</p-->
           </div>
-      </a> 
+      </a>
 
       <br>
       <div (click)="whatShows(20)"><u>see more</u></div>
-      
+
       <ul class="pagination">
           <li class="page-item">
             <a class="page-link" (click)="whatShows(10)" aria-label="Previous">
@@ -92,5 +92,4 @@
           </li>
         </ul>
 
-      
-  
+
