@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
@@ -19,6 +20,7 @@ import { NewAddressComponent } from './profile/address/new-address/new-address.c
 import { NewPaymentComponent } from 'src/app/profile/payment/new-payment/new-payment.component';
 
 import { BooksComponent } from './books/books.component';
+import { SameAuthorComponent } from './same-author/same-author.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -27,8 +29,10 @@ import { AuthGuard } from './auth/auth-guard.service';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'sameAuthor', component: SameAuthorComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'book_details', component: BookdetailsComponent },
+  { path: 'bookdetails', component: BookdetailsComponent },
   { path: 'sign_in', component: SigninComponent },
   { path: 'sign_up', component: SignupComponent },
   { path: 'profile', component: ProfileComponent, canLoad: [AuthGuard] },
@@ -41,7 +45,6 @@ const appRoutes: Routes = [
   { path: 'profile/address', component: AddressComponent },
   { path: 'profile/address/new-address', component: NewAddressComponent },
   { path: 'profile/address/edit-address', component: NewAddressComponent },
-  { path: 'books', component: BooksComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

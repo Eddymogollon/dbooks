@@ -1,139 +1,247 @@
-<head runat="server">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-</head>
 
-<!-- <app-profile></app-profile> -->
-<div class= "container">
-  <div class="row">
+
+
+
+
+<head runat="server">    
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>  
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head> 
+
+<a class='stars' *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
+  <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+   
+</a> 
+
+<h3>Book Details</h3>
+
+<!--book cover-->
+<div class="row">
+<div class="pull-left">
+<div >
+   
+      <img *ngFor="let books of books" src="{{books.path}}" alt="{{books.Name}}" 
+      class="img-responsive"  class="pic" style="max-height: 225px;">
+ 
+      <img *ngFor="let books of books" src="{{books.path}}" alt="{{books.Name}}" 
+      class="img-responsive"  class="picbig " style="max-height: 225px;">
+</div>
+</div>
+</div>
+
+
+<!--book title-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Title:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">{{books.Title}}</p>
+</div>
+<!--author name-->
+</div>
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Author:</p>
+</div>
+<div class="col-md-7">
+  <a *ngFor="let books of books" class="list-group-item-text" 
+   (click)= getAuthorName(books) routerLink ="/sameAuthor">{{books.Author}}</a>
+</div>  
+</div>
+<!--Gerne-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Gerne:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">{{books.Genre}}</p>
+</div>  
+</div>
+<!--Publisher-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Publisher:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">{{books.Publisher}}</p>
+</div>  
+</div>
+<!--Price-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Price:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">$ {{books.Price}}</p>
+</div>  
+</div>
+<!--Synopsis-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>Synopsis:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">{{books.SYN}}</p>
+</div>  
+</div>
+<!--about the author-->
+<hr>
+<div class="row">
+<div class="col-md-3">
+      <p>About the Author:</p>
+</div>
+<div class="col-md-7">
+  <p *ngFor="let books of books" class="list-group-item-text">{{books.Bio}}</p>
+</div>  
+</div>
+<hr id= "bigtext">
+
+<!--user comments about the book  -->
+<body>  
+
+<div class="container">  
+  <h3>Post a Comment</h3>  
+  <hr />  
+  <div class="form-group" >  
+      <form ng-controller="commentControler">  
+          <textarea class="form-control" rows="5" placeholder="Your Comment Please....."  
+          ng-model="userComment" (input)=updateComments($event)></textarea>  
+          <br />  
+          <button class="btn btn-success pull-right" ng-click="addComment()" 
+          (click)= "onSaveComments()">Post Comment</button>  
+          <br />  
+       
+      </form>  
+  </div>  
+</div>  
+
+<!-- user comments from database -->
+<div *ngFor="let books of books">
+<div class="row">
     <div class="col-md-12">
-
-      <h3>Book Details</h3>
-
-      <!--book cover-->
-      <div class="row">
-      <div class="pull-left">
-        <div>
-          <img *ngFor="let books of books" src="{{books.coverImagePath}}" alt="{{books.title}}"
-          class="img-responsive" style="max-height: 225px;">
-        </div>
-      </div>
-      </div>
-
-
-      <!--book title-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Title:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.title}}</p>
-        </div>
-        <!--author name-->
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Author:</p>
-        </div>
-        <div class="col-md-7">
-          <a *ngFor="let books of books" class="list-group-item-text"
-          href="#">{{books.author}}</a>
-        </div>
-      </div>
-      <!--Gerne-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Gerne:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.gerne}}</p>
-        </div>
-      </div>
-      <!--Publisher-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Publisher:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.publisher}}</p>
-        </div>
-      </div>
-      <!--Price-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Price:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.price}}</p>
-        </div>
-      </div>
-      <!--Synopsis-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>Synopsis:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.synopsis}}</p>
-        </div>
-      </div>
-      <!--about the author-->
-      <hr>
-      <div class="row">
-        <div class="col-md-3">
-              <p>About the Author:</p>
-        </div>
-        <div class="col-md-7">
-          <p *ngFor="let books of books" class="list-group-item-text">{{books.aboutAuthor}}</p>
-        </div>
-      </div>
+      <h3>User Comments:</h3>
+        <div  class="col-md-7">
+           <hr> <br>
+     <p class="list-group-item-text"> {{books.comments}} </p>
+     </div>  
+   </div>
+  </div>
+</div>
+ <br>
+ <br>
+</body>  
 
 
-      <body ng-app>
-          <div class="container">
-              <h1>Comment
-              </h1>
-              <hr />
-              <div class="form-group" >
-                  <form ng-controller="commentControler">
-                      <textarea class="form-control" rows="5" placeholder="Your Comment Please....."  ng-model="CommentText"></textarea>
-                      <br />
-                      <button class="btn btn-success pull-right" ng-click="addComment()">Comment.</button>
-                      <br />
-                      <hr />
-                      <ul class="list-group" >
-                          <li class="list-group-item" ng-repeat="cmt in commentArray">{{cmt}}
-                              <a href="" ng-click="romoveComment($comText);" ><span class="glyphicon glyphicon-trash" style="float:right"> </span></a>
-                          </li>
-                      </ul>
-                  </form>
-              </div>
-          </div>
-          <script>
-
-              function commentControler($scope) {
-                  $scope.commentArray = [];  //Main Object hare I'm adding all Comment informations
-                  $scope.addComment = function () {  // Comment Button click Event
-                      if($scope.CommentText!=null)
-                      {
-                          $scope.commentArray.push($scope.CommentText);
-                          $scope.CommentText = "";
-                      }
-                  }
-                  $scope.romoveComment = function ($comText) {  // Delete button click Event
-                      $scope.commentArray.splice($comText,1);
-                  }
-
-              }
-          </script>
-        </body>
 
 
+<!-- ******** book rating ******-->
+
+
+
+<!--
+<p class='stars'> {{rating}}</p>
+<br>
+ -->
+
+ <!-- ****** end of book rating ****** -->
+<!--  
+ //<p> {{fetchComments()}} </p> 
+ 
+    <form action="/html/tags/html_form_tag_action.cfm" method="post">
+  <div>
+  <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+  Hey... say something!
+  </textarea>
+  </div>
+  <input type="submit" value="Submit">
+  </form>
+
+
+
+
+  <p>{commentAdded}</p>
+  
+
+     <div class="container">  
+      <h1>Comment   
+      </h1>  
+      <hr />  
+      <div class="form-group" >  
+          <form ng-controller="commentControler">  
+              <textarea class="form-control" rows="5" placeholder="Your Comment Please....."  
+              ng-model="userComment" (input)=updateComments($event)></textarea>  
+              <br />  
+              <button class="btn btn-success pull-right" ng-click="addComment()">Comment.</button>  
+              <br />  
+           
+          </form>  
+      </div>  
+  </div>  
+
+  <script>  
+
+      function commentControler($scope) {  
+          $scope.commentArray = [];  //Main Object hare I'm adding all Comment informations
+          $scope.addComment = function () {  // Comment Button click Event
+              if($scope.CommentText!=null)  
+              {  
+                  $scope.commentArray.push($scope.CommentText);  
+                  $scope.CommentText = "";  
+              }  
+          }  
+          $scope.romoveComment = function ($comText) {  // Delete button click Event
+              $scope.commentArray.splice($comText,1);  
+          }  
+
+      }  
+  </script>
+
+<div class="container">
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-up"></span>
+      <div class="message">
+        <span>I just made a comment about this comment box which is purely made from CSS.</span>
       </div>
     </div>
+  </div>
+  
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-down"></span>
+      <div class="message">
+        <span>I just made a comment about this comment box which is purely made from CSS.</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-left"></span>
+      <div class="message">
+        <span>I just made a comment about this comment box which is purely made from CSS.</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-right"></span>
+      <div class="message">
+        <span>I just made a comment about this comment box which is purely made from CSS.</span>
+      </div>
+    </div>
+  </div>
 </div>
+-->
+      
+        
+ 

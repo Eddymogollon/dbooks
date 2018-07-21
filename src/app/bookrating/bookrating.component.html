@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<h1>  
+  
+</h1>  
+<br>  
+<a class='stars' *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
+  <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+   
+</a>  
+<!--
+<p class='stars'> {{rating}}</p>
+<br>
+ -->
+

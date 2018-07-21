@@ -1,23 +1,31 @@
 export class Bookdetail{
-  public title: string;
-  public author: string;
-  public gerne: string;
-  public publisher: string;
-  public price: string;
-  public synopsis: string;
-  public aboutAuthor: string;
-  public coverImagePath: string;
+  public Author: string;
+  public Bio: string;
+  public Genre: string;
+  public Price: number;
+  public Publisher: string;
+  public SYN: string;
+  public Title: string;
+  public path: string;
+  public comments: string[];
+  public Rating: number;
+  public PubDate: string;
+  public TimesBought: number;
 
-  constructor(title: string, author: string, gerne: string, publisher: string, price: string,
-      synopsis: string, aboutAuthor: string, coverImagePath: string ){
+  constructor( author: string, aboutAuthor: string, genre: string, price: number, publisher: string, synopsis: string, title: string,
+        coverImagePath: string, rating: number, pubDate: string  ) {
 
-         this.title = title;
-         this.author = author;
-         this.gerne = gerne;
-         this.publisher = publisher;
-         this.price = price;
-         this.synopsis = synopsis;
-         this.aboutAuthor = aboutAuthor;
-         this.coverImagePath = coverImagePath;
+         this.Title = title;
+         this.Author = author;
+         this.Genre = genre;
+         this.Publisher = publisher;
+         this.Price = price;
+         this.SYN = synopsis;
+         this.Bio = aboutAuthor;
+         this.path = coverImagePath;
+         this.comments = [];
+         this.Rating = rating;
+         this.PubDate = pubDate;
+         this.TimesBought = 0;
       }
  }
